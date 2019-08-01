@@ -1,0 +1,42 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.absoluteToRelativeChunkName = exports.chunkNameFromFile = void 0;
+
+var _path = _interopRequireDefault(require("path"));
+
+var _ = require(".");
+
+// Instead of using path.sep, we always want to test for all of them. This makes
+// the tests consistent and means we can write tests with either separator
+var escapedPathSeps = (0, _.escapeRegExp)("".concat(_path["default"].win32.sep).concat(_path["default"].posix.sep));
+
+var chunkNameFromFile = function chunkNameFromFile(filename) {
+  // Normalize filename for path.join
+  filename = filename.replace(new RegExp("[".concat(escapedPathSeps, "]"), 'g'), _path["default"].sep); // Remove the extension
+
+  return _path["default"].join(_path["default"].dirname(filename), _path["default"].basename(filename, _path["default"].extname(filename))) // Remove the drive letter or leading (back)slash
+  .replace(/^(?:[A-Z]:)?(?:\\|\/)/, '') // Now turn it into a name
+  .replace(new RegExp("[".concat(escapedPathSeps, "]"), 'g'), '-');
+};
+
+exports.chunkNameFromFile = chunkNameFromFile;
+
+var absoluteToRelativeChunkName = function absoluteToRelativeChunkName(ROOT, chunkName) {
+  var pathPrefix = chunkNameFromFile(ROOT); // inner components can simply be added aswell
+
+  if (!chunkName.startsWith(pathPrefix)) {
+    return chunkName;
+  } // The templates starts with the absolute path, that's the one we want to
+  // replace. It's length + 1 because otherwise it would start with a hyphen
+
+
+  return chunkNameFromFile(chunkName).substring(pathPrefix.length + 1);
+};
+
+exports.absoluteToRelativeChunkName = absoluteToRelativeChunkName;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy91dGlscy9jaHVua0J1aWxkZXIuanMiXSwibmFtZXMiOlsiZXNjYXBlZFBhdGhTZXBzIiwicGF0aCIsIndpbjMyIiwic2VwIiwicG9zaXgiLCJjaHVua05hbWVGcm9tRmlsZSIsImZpbGVuYW1lIiwicmVwbGFjZSIsIlJlZ0V4cCIsImpvaW4iLCJkaXJuYW1lIiwiYmFzZW5hbWUiLCJleHRuYW1lIiwiYWJzb2x1dGVUb1JlbGF0aXZlQ2h1bmtOYW1lIiwiUk9PVCIsImNodW5rTmFtZSIsInBhdGhQcmVmaXgiLCJzdGFydHNXaXRoIiwic3Vic3RyaW5nIiwibGVuZ3RoIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7QUFBQTs7QUFFQTs7QUFFQTtBQUNBO0FBQ0EsSUFBTUEsZUFBZSxHQUFHLDhCQUFnQkMsaUJBQUtDLEtBQUwsQ0FBV0MsR0FBM0IsU0FBaUNGLGlCQUFLRyxLQUFMLENBQVdELEdBQTVDLEVBQXhCOztBQUVPLElBQU1FLGlCQUFpQixHQUFHLFNBQXBCQSxpQkFBb0IsQ0FBQUMsUUFBUSxFQUFJO0FBQzNDO0FBQ0FBLEVBQUFBLFFBQVEsR0FBR0EsUUFBUSxDQUFDQyxPQUFULENBQWlCLElBQUlDLE1BQUosWUFBZVIsZUFBZixRQUFtQyxHQUFuQyxDQUFqQixFQUEwREMsaUJBQUtFLEdBQS9ELENBQVgsQ0FGMkMsQ0FHM0M7O0FBQ0EsU0FDRUYsaUJBQ0dRLElBREgsQ0FFSVIsaUJBQUtTLE9BQUwsQ0FBYUosUUFBYixDQUZKLEVBR0lMLGlCQUFLVSxRQUFMLENBQWNMLFFBQWQsRUFBd0JMLGlCQUFLVyxPQUFMLENBQWFOLFFBQWIsQ0FBeEIsQ0FISixFQUtFO0FBTEYsR0FNR0MsT0FOSCxDQU1XLHVCQU5YLEVBTW9DLEVBTnBDLEVBT0U7QUFQRixHQVFHQSxPQVJILENBUVcsSUFBSUMsTUFBSixZQUFlUixlQUFmLFFBQW1DLEdBQW5DLENBUlgsRUFRb0QsR0FScEQsQ0FERjtBQVdELENBZk07Ozs7QUFpQkEsSUFBTWEsMkJBQTJCLEdBQUcsU0FBOUJBLDJCQUE4QixDQUFDQyxJQUFELEVBQU9DLFNBQVAsRUFBcUI7QUFDOUQsTUFBTUMsVUFBVSxHQUFHWCxpQkFBaUIsQ0FBQ1MsSUFBRCxDQUFwQyxDQUQ4RCxDQUc5RDs7QUFDQSxNQUFJLENBQUNDLFNBQVMsQ0FBQ0UsVUFBVixDQUFxQkQsVUFBckIsQ0FBTCxFQUF1QztBQUNyQyxXQUFPRCxTQUFQO0FBQ0QsR0FONkQsQ0FROUQ7QUFDQTs7O0FBQ0EsU0FBT1YsaUJBQWlCLENBQUNVLFNBQUQsQ0FBakIsQ0FBNkJHLFNBQTdCLENBQXVDRixVQUFVLENBQUNHLE1BQVgsR0FBb0IsQ0FBM0QsQ0FBUDtBQUNELENBWE0iLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgcGF0aCBmcm9tICdwYXRoJ1xuXG5pbXBvcnQgeyBlc2NhcGVSZWdFeHAgfSBmcm9tICcuJ1xuXG4vLyBJbnN0ZWFkIG9mIHVzaW5nIHBhdGguc2VwLCB3ZSBhbHdheXMgd2FudCB0byB0ZXN0IGZvciBhbGwgb2YgdGhlbS4gVGhpcyBtYWtlc1xuLy8gdGhlIHRlc3RzIGNvbnNpc3RlbnQgYW5kIG1lYW5zIHdlIGNhbiB3cml0ZSB0ZXN0cyB3aXRoIGVpdGhlciBzZXBhcmF0b3JcbmNvbnN0IGVzY2FwZWRQYXRoU2VwcyA9IGVzY2FwZVJlZ0V4cChgJHtwYXRoLndpbjMyLnNlcH0ke3BhdGgucG9zaXguc2VwfWApXG5cbmV4cG9ydCBjb25zdCBjaHVua05hbWVGcm9tRmlsZSA9IGZpbGVuYW1lID0+IHtcbiAgLy8gTm9ybWFsaXplIGZpbGVuYW1lIGZvciBwYXRoLmpvaW5cbiAgZmlsZW5hbWUgPSBmaWxlbmFtZS5yZXBsYWNlKG5ldyBSZWdFeHAoYFske2VzY2FwZWRQYXRoU2Vwc31dYCwgJ2cnKSwgcGF0aC5zZXApXG4gIC8vIFJlbW92ZSB0aGUgZXh0ZW5zaW9uXG4gIHJldHVybiAoXG4gICAgcGF0aFxuICAgICAgLmpvaW4oXG4gICAgICAgIHBhdGguZGlybmFtZShmaWxlbmFtZSksXG4gICAgICAgIHBhdGguYmFzZW5hbWUoZmlsZW5hbWUsIHBhdGguZXh0bmFtZShmaWxlbmFtZSkpXG4gICAgICApXG4gICAgICAvLyBSZW1vdmUgdGhlIGRyaXZlIGxldHRlciBvciBsZWFkaW5nIChiYWNrKXNsYXNoXG4gICAgICAucmVwbGFjZSgvXig/OltBLVpdOik/KD86XFxcXHxcXC8pLywgJycpXG4gICAgICAvLyBOb3cgdHVybiBpdCBpbnRvIGEgbmFtZVxuICAgICAgLnJlcGxhY2UobmV3IFJlZ0V4cChgWyR7ZXNjYXBlZFBhdGhTZXBzfV1gLCAnZycpLCAnLScpXG4gIClcbn1cblxuZXhwb3J0IGNvbnN0IGFic29sdXRlVG9SZWxhdGl2ZUNodW5rTmFtZSA9IChST09ULCBjaHVua05hbWUpID0+IHtcbiAgY29uc3QgcGF0aFByZWZpeCA9IGNodW5rTmFtZUZyb21GaWxlKFJPT1QpXG5cbiAgLy8gaW5uZXIgY29tcG9uZW50cyBjYW4gc2ltcGx5IGJlIGFkZGVkIGFzd2VsbFxuICBpZiAoIWNodW5rTmFtZS5zdGFydHNXaXRoKHBhdGhQcmVmaXgpKSB7XG4gICAgcmV0dXJuIGNodW5rTmFtZVxuICB9XG5cbiAgLy8gVGhlIHRlbXBsYXRlcyBzdGFydHMgd2l0aCB0aGUgYWJzb2x1dGUgcGF0aCwgdGhhdCdzIHRoZSBvbmUgd2Ugd2FudCB0b1xuICAvLyByZXBsYWNlLiBJdCdzIGxlbmd0aCArIDEgYmVjYXVzZSBvdGhlcndpc2UgaXQgd291bGQgc3RhcnQgd2l0aCBhIGh5cGhlblxuICByZXR1cm4gY2h1bmtOYW1lRnJvbUZpbGUoY2h1bmtOYW1lKS5zdWJzdHJpbmcocGF0aFByZWZpeC5sZW5ndGggKyAxKVxufVxuIl19
