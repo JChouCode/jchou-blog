@@ -4,6 +4,7 @@ import { Root, Routes, addPrefetchExcludes } from 'react-static'
 import { Link, Router } from 'components/Router'
 import Dynamic from 'containers/Dynamic'
 import Header from "./components/Header"
+import $ from "jquery"
 
 import './app.css'
 
@@ -15,7 +16,13 @@ function App() {
     <Root>
       <Header />
       <div className="content">
-        <React.Suspense fallback={<em>Loading...</em>}>
+        <React.Suspense fallback={
+          <div className="container">
+            <div className="card">
+              <h3>Loading...</h3>
+            </div>
+          </div>
+        }>
           <Router>
             <Dynamic path="dynamic" />
             <Routes path="*" />
