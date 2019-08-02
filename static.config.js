@@ -29,7 +29,7 @@ export default {
       }),
       children: posts.map((post) => ({
         path: `/post/${post.id}`,
-        template: 'src/pages/post',
+        template: 'src/templates/post',
         getData: () => ({
           post,
         }),

@@ -1,0 +1,61 @@
+{
+  "prefetchRate": 5,
+  "maxThreads": null,
+  "disableRoutePrefixing": false,
+  "outputFileRate": 100,
+  "extensions": [
+    ".js",
+    ".jsx"
+  ],
+  "minLoadTime": 200,
+  "disablePreload": false,
+  "disableRuntime": false,
+  "preloadPollInterval": 300,
+  "productionSourceMaps": false,
+  "entry": "index.js",
+  "plugins": [
+    [
+      "/Users/jeffreychou/Desktop/jchou-blog/node_modules/react-static-plugin-source-filesystem/node.api.js",
+      {
+        "location": "/Users/jeffreychou/Desktop/jchou-blog/src/pages"
+      }
+    ],
+    "/Users/jeffreychou/Desktop/jchou-blog/node_modules/react-static-plugin-reach-router/browser.api.js",
+    "/Users/jeffreychou/Desktop/jchou-blog/node_modules/react-static-plugin-sitemap/dist/node.api.js",
+    "/Users/jeffreychou/Desktop/jchou-blog"
+  ],
+  "paths": {
+    "ROOT": "/Users/jeffreychou/Desktop/jchou-blog",
+    "SRC": "/Users/jeffreychou/Desktop/jchou-blog/src",
+    "DIST": "/Users/jeffreychou/Desktop/jchou-blog/dist",
+    "ASSETS": "/Users/jeffreychou/Desktop/jchou-blog/dist",
+    "PLUGINS": "/Users/jeffreychou/Desktop/jchou-blog/plugins",
+    "TEMP": "/Users/jeffreychou/Desktop/jchou-blog/tmp",
+    "ARTIFACTS": "/Users/jeffreychou/Desktop/jchou-blog/artifacts",
+    "PUBLIC": "/Users/jeffreychou/Desktop/jchou-blog/public",
+    "NODE_MODULES": "/Users/jeffreychou/Desktop/jchou-blog/node_modules",
+    "EXCLUDE_MODULES": "/Users/jeffreychou/Desktop/jchou-blog/node_modules",
+    "PACKAGE": "/Users/jeffreychou/Desktop/jchou-blog/package.json",
+    "HTML_TEMPLATE": "/Users/jeffreychou/Desktop/jchou-blog/dist/index.html",
+    "STATIC_DATA": "/Users/jeffreychou/Desktop/jchou-blog/dist/staticData"
+  },
+  "siteRoot": "",
+  "basePath": "",
+  "publicPath": "/",
+  "assetsPath": "",
+  "extractCssChunks": false,
+  "inlineCss": false,
+  "babelExcludes": [],
+  "devServer": {
+    "host": "localhost",
+    "port": 3000
+  },
+  "terser": {
+    "terserOptions": {
+      "mangle": {},
+      "parse": {},
+      "compress": {},
+      "output": {}
+    }
+  }
+}
