@@ -1,27 +1,40 @@
 import path from 'path'
-import axios from 'axios'
+import request from "graphql-request"
+import axios from "axios"
+
+const GRAPHCMS_endpoint = "https://api-uswest.graphcms.com/v1/cjyt00rv801nc01e3fhxy6izr/master";
+
+const query =
+  `{
+  posts{
+    id
+    title
+    image {
+      handle
+    }
+    content
+  }
+}`;
 
 export default {
   getRoutes: async () => {
-    const { data: posts } = await axios.get(
-      'https://jsonplaceholder.typicode.com/posts'
-    )
-
-    return [
-      {
-        path: '/blog',
+    const {
+      posts
+    } = await request(GRAPHCMS_endpoint, query);
+    console.log(posts);
+    return [{
+      path: '/',
+      getData: () => ({
+        posts,
+      }),
+      children: posts.map((post) => ({
+        path: `/post/${post.id}`,
+        template: 'src/pages/post',
         getData: () => ({
-          posts,
+          post,
         }),
-        children: posts.map(post => ({
-          path: `/post/${post.id}`,
-          template: 'src/containers/Post',
-          getData: () => ({
-            post,
-          }),
-        })),
-      },
-    ]
+      })),
+    }, ]
   },
   plugins: [
     [
