@@ -3,33 +3,86 @@
 }
 
 body {
-  font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',
+  font-family: '-apple-system', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',
     Helvetica, Arial, 'Lucida Grande', sans-serif;
   font-weight: 300;
   font-size: 16px;
+  line-height: 1.4em;
   margin: 0;
   padding: 0;
+  background: #1f1f1f;
+  color: white;
+}
+
+#line {
+  width: 20%;
+  height: 1px;
+  background: white;
+  opacity: 0.7;
+}
+
+nav {
+  margin-top: 1.5em;
+}
+
+nav a {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  padding-right: 1.5em;
+}
+
+nav a svg {
+  fill: white;
+  opacity: 0.7;
+  transition: 0.5s all cubic-bezier(0.23, 1, 0.320, 1)
+}
+
+nav a svg:hover {
+  opacity: 1;
+}
+
+.header-wrapper {
+  position: fixed;
+  margin-top: 8%;
+  margin-left: 10%;
+}
+
+.built {
+  margin-top: 23em;
+  font-size: 13px;
+  font-weight: 200;
+  opacity: 0.6;
+}
+
+.container {
+  /* position: relative; */
+  width: 55%;
+  margin-top: 5%;
+  margin-left: auto;
+  margin-right: 10%;
+}
+
+.card {
+  display: flex;
+  background: white;
+  padding: 1em 3em;
+  margin-bottom: 1em;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.card:hover {
+  box-shadow: 1px 1px 5px #999;
 }
 
 a {
   text-decoration: none;
-  color: #108db8;
-  font-weight: bold;
+  color: rgb(22, 22, 22);
 }
 
 img {
   max-width: 100%;
-}
-
-nav {
-  width: 100%;
-  background: #108db8;
-}
-
-nav a {
-  color: white;
-  padding: 1rem;
-  display: inline-block;
 }
 
 .content {
