@@ -22,7 +22,7 @@ export default () => {
         </a>
       </nav>
       <div className="built">
-        Powered by React, GraphQL, GraphCMS
+        Powered by React & GraphQL
       </div>
     </div>
   )
