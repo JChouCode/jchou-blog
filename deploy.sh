@@ -10,9 +10,9 @@ npm run build
 cd ./dist
 
 # redirect CNAME
-# echo 'codelabs.iotex.io' > CNAME
+echo 'jchou.dev' > CNAME
 
-
+git init
 git add -A
 git commit -m 'Deploy files'
 
