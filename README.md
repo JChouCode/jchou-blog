@@ -1,3 +1,5 @@
-# React-Static - Basic Template
+# jchou-blog
 
-To use this template, run `react-static create` and use the `basic` template.
+Personal blog by Jeffrey Chou, built from scratch
+
+Powered by React, GraphQL, GraphCMS.
