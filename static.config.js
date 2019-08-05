@@ -21,7 +21,7 @@ export default {
     const {
       posts
     } = await request(GRAPHCMS_endpoint, query);
-    console.log(posts);
+    // console.log(posts);
     return [{
       path: '/',
       getData: () => ({

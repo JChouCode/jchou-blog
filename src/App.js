@@ -18,6 +18,7 @@ function App() {
       <div className="content">
         <React.Suspense fallback={
           <div className="container">
+            <div className="built">Built with <span>React</span> & <span>GraphQL</span></div>
             <div className="card">
               <h3>Loading...</h3>
             </div>
